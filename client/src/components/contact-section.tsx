@@ -26,8 +26,8 @@ export default function ContactSection() {
   const socialLinks: SocialLink[] = [
     { name: "LinkedIn", icon: "fab fa-linkedin", url: "https://www.linkedin.com/in/amarnath-s-s/" },
     { name: "GitHub", icon: "fab fa-github", url: "https://github.com/Amarnathss" },
-    { name: "LeetCode", icon: "fas fa-code", url: "https://leetcode.com/amarnathss/" },
-    { name: "X (Twitter)", icon: "fab fa-twitter", url: "https://twitter.com/amarnathss" },
+    { name: "LeetCode", icon: "fas fa-code", url: "https://leetcode.com/u/amarnath_ss/" },
+    { name: "X (Twitter)", icon: "fab fa-twitter", url: "https://x.com/Amarnath_S_S" },
   ];
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
