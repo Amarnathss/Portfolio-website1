@@ -75,12 +75,16 @@ export default function ProjectsSection() {
               <div className="flex gap-4">
                 <a 
                   href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex-1 chalk-box px-4 py-2 text-center chalk-text font-chalk-body hover:bg-chalk hover:text-black transition-all duration-300"
                 >
                   <i className="fab fa-github mr-2"></i>GitHub
                 </a>
                 <a 
                   href={project.demoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex-1 chalk-box px-4 py-2 text-center chalk-text font-chalk-body hover:bg-chalk-accent hover:text-black transition-all duration-300"
                 >
                   <i className="fas fa-external-link-alt mr-2"></i>Demo
