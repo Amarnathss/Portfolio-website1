@@ -14,7 +14,7 @@ export default function ProjectsSection() {
       icon: "fas fa-seedling",
       description: "ML-powered app recommending optimal crops and fertilizers based on soil and environmental conditions.",
       techStack: ["Python", "scikit-learn", "Pandas", "Flask", "React.js"],
-      githubUrl: "#",
+      githubUrl: "https://github.com/Amarnathss/Crop-and-Fertilizer-Recomendation-Project",
       demoUrl: "#",
     },
     {
@@ -22,7 +22,7 @@ export default function ProjectsSection() {
       icon: "fas fa-robot",
       description: "Platform to upload and search personal notes, integrated GitHub access, and competitive programming stats visualization.",
       techStack: ["React.js", "Node.js", "Grok AI", "Multi-user"],
-      githubUrl: "#",
+      githubUrl: "https://github.com/Amarnathss/PrepStack_AI_Assistent",
       demoUrl: "#",
     },
     {
@@ -30,7 +30,7 @@ export default function ProjectsSection() {
       icon: "fas fa-briefcase",
       description: "Full-stack job portal for job seekers and recruiters with job posting and candidate search functionality.",
       techStack: ["React.js", "Node.js", "Express", "MongoDB"],
-      githubUrl: "#",
+      githubUrl: "https://github.com/Amarnathss/jobsy",
       demoUrl: "#",
     },
   ];
