@@ -38,7 +38,7 @@ export default function ContactSection() {
     }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Validate form
@@ -63,22 +63,28 @@ export default function ContactSection() {
     }
 
     try {
-      // Create FormData for Netlify Forms
-      const netlifyFormData = new FormData();
-      netlifyFormData.append('form-name', 'contact');
-      netlifyFormData.append('name', formData.name);
-      netlifyFormData.append('email', formData.email);
-      netlifyFormData.append('subject', formData.subject);
-      netlifyFormData.append('message', formData.message);
+      // Encode form data for Netlify
+      const encode = (data: Record<string, string>) => {
+        return Object.keys(data)
+          .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+          .join("&");
+      };
 
-      // Send to Netlify Forms
-      const response = await fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(netlifyFormData as any).toString(),
+      // Try Netlify Forms first
+      const response = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encode({
+          "form-name": "contact",
+          "name": formData.name,
+          "email": formData.email,
+          "subject": formData.subject,
+          "message": formData.message
+        })
       });
 
-      if (response.ok) {
+      // Check if the response is successful
+      if (response.ok || response.status === 200) {
         // Success message
         toast({
           title: "Message Sent!",
@@ -93,12 +99,18 @@ export default function ContactSection() {
           message: "",
         });
       } else {
-        throw new Error('Failed to send message');
+        // If Netlify Forms fails, provide alternative contact method
+        toast({
+          title: "Form Submission Issue",
+          description: "Please email me directly at amarnathss306@gmail.com or try again later.",
+          variant: "destructive",
+        });
       }
     } catch (error) {
+      // Fallback message with direct contact info
       toast({
-        title: "Error",
-        description: error instanceof Error ? error.message : "Failed to send message. Please try again.",
+        title: "Connection Issue",
+        description: "Please email me directly at amarnathss306@gmail.com. I'd love to hear from you!",
         variant: "destructive",
       });
     }
@@ -151,15 +163,25 @@ export default function ContactSection() {
           
           {/* Contact Form */}
           <div className="chalk-box p-6 md:p-8">
-            <h3 className="font-chalk text-2xl md:text-3xl chalk-text text-chalk-accent mb-8">Send a Message</h3>
+            <h3 className="font-chalk text-2xl md:text-3xl chalk-text text-chalk-accent mb-6">Send a Message</h3>
+            
+            {/* Quick Email Option */}
+            <div className="mb-6 p-4 chalk-box bg-opacity-30">
+              <p className="font-chalk-body chalk-text text-sm mb-2">
+                <i className="fas fa-envelope text-chalk-accent mr-2"></i>
+                Prefer email? 
+                <a 
+                  href="mailto:amarnathss306@gmail.com?subject=Portfolio Contact&body=Hi Amarnath,%0D%0A%0D%0A"
+                  className="text-chalk-accent hover:text-chalk underline ml-1"
+                >
+                  Send directly
+                </a>
+              </p>
+            </div>
             
             <form 
               onSubmit={handleSubmit} 
               className="space-y-6"
-              name="contact"
-              method="POST"
-              data-netlify="true"
-              netlify-honeypot="bot-field"
             >
               {/* Hidden field for Netlify Forms */}
               <input type="hidden" name="form-name" value="contact" />
