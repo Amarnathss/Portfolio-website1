@@ -35,6 +35,14 @@ export default function ProjectsSection() {
     },
   ];
 
+  const handleLinkClick = (url: string, e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (url !== "#") {
+      window.open(url, '_blank', 'noopener,noreferrer');
+    }
+  };
+
   return (
     <section id="projects" className="py-20 pt-24">
       <div className="container mx-auto px-4">
@@ -73,22 +81,26 @@ export default function ProjectsSection() {
               </div>
               
               <div className="flex gap-4">
-                <a 
-                  href={project.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 chalk-box px-4 py-2 text-center chalk-text font-chalk-body hover:bg-chalk hover:text-black transition-all duration-300"
+                <button
+                  onClick={(e) => handleLinkClick(project.githubUrl, e)}
+                  className="flex-1 chalk-box px-4 py-2 text-center chalk-text font-chalk-body hover:bg-chalk hover:text-black transition-all duration-300 cursor-pointer relative z-10 select-none"
+                  style={{ pointerEvents: 'auto' }}
                 >
                   <i className="fab fa-github mr-2"></i>GitHub
-                </a>
-                <a 
-                  href={project.demoUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 chalk-box px-4 py-2 text-center chalk-text font-chalk-body hover:bg-chalk-accent hover:text-black transition-all duration-300"
+                </button>
+                <button
+                  onClick={(e) => handleLinkClick(project.demoUrl, e)}
+                  className={`flex-1 chalk-box px-4 py-2 text-center chalk-text font-chalk-body transition-all duration-300 relative z-10 select-none ${
+                    project.demoUrl === "#" 
+                      ? "opacity-50 cursor-not-allowed" 
+                      : "hover:bg-chalk-accent hover:text-black cursor-pointer"
+                  }`}
+                  style={{ pointerEvents: project.demoUrl === "#" ? 'none' : 'auto' }}
+                  disabled={project.demoUrl === "#"}
                 >
-                  <i className="fas fa-external-link-alt mr-2"></i>Demo
-                </a>
+                  <i className="fas fa-external-link-alt mr-2"></i>
+                  {project.demoUrl === "#" ? "Coming Soon" : "Demo"}
+                </button>
               </div>
             </div>
           ))}

@@ -770,3 +770,29 @@
     font-size: 1em;
   }
 }
+
+/* Add this to your global CSS file if it doesn't exist */
+.project-card {
+  position: relative;
+}
+
+.project-card button {
+  pointer-events: auto !important;
+  user-select: none;
+  z-index: 10;
+  position: relative;
+}
+
+.project-card button:hover {
+  transform: translateY(-2px);
+}
+
+.project-card button:active {
+  transform: translateY(0);
+}
+
+/* Ensure no overlay is blocking clicks */
+.project-card::before,
+.project-card::after {
+  pointer-events: none;
+}
