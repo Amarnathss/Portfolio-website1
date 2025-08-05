@@ -24,10 +24,10 @@ export default function ContactSection() {
   });
 
   const socialLinks: SocialLink[] = [
-    { name: "LinkedIn", icon: "fab fa-linkedin", url: "#" },
-    { name: "GitHub", icon: "fab fa-github", url: "#" },
-    { name: "LeetCode", icon: "fas fa-code", url: "#" },
-    { name: "X (Twitter)", icon: "fab fa-twitter", url: "#" },
+    { name: "LinkedIn", icon: "fab fa-linkedin", url: "https://www.linkedin.com/in/amarnath-s-s/" },
+    { name: "GitHub", icon: "fab fa-github", url: "https://github.com/Amarnathss" },
+    { name: "LeetCode", icon: "fas fa-code", url: "https://leetcode.com/amarnathss/" },
+    { name: "X (Twitter)", icon: "fab fa-twitter", url: "https://twitter.com/amarnathss" },
   ];
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -63,20 +63,20 @@ export default function ContactSection() {
     }
 
     try {
-      // Send to API
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          message: `Subject: ${formData.subject}\n\n${formData.message}`
-        }),
-      });
+      // Create FormData for Netlify Forms
+      const netlifyFormData = new FormData();
+      netlifyFormData.append('form-name', 'contact');
+      netlifyFormData.append('name', formData.name);
+      netlifyFormData.append('email', formData.email);
+      netlifyFormData.append('subject', formData.subject);
+      netlifyFormData.append('message', formData.message);
 
-      const result = await response.json();
+      // Send to Netlify Forms
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(netlifyFormData as any).toString(),
+      });
 
       if (response.ok) {
         // Success message
@@ -93,7 +93,7 @@ export default function ContactSection() {
           message: "",
         });
       } else {
-        throw new Error(result.error || 'Failed to send message');
+        throw new Error('Failed to send message');
       }
     } catch (error) {
       toast({
@@ -153,7 +153,23 @@ export default function ContactSection() {
           <div className="chalk-box p-6 md:p-8">
             <h3 className="font-chalk text-2xl md:text-3xl chalk-text text-chalk-accent mb-8">Send a Message</h3>
             
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form 
+              onSubmit={handleSubmit} 
+              className="space-y-6"
+              name="contact"
+              method="POST"
+              data-netlify="true"
+              netlify-honeypot="bot-field"
+            >
+              {/* Hidden field for Netlify Forms */}
+              <input type="hidden" name="form-name" value="contact" />
+              
+              {/* Honeypot field for spam protection */}
+              <div style={{ display: 'none' }}>
+                <label>
+                  Don't fill this out if you're human: <input name="bot-field" />
+                </label>
+              </div>
               <div>
                 <label className="block font-chalk-body chalk-text text-lg mb-2" htmlFor="name">
                   Name
