@@ -15,7 +15,7 @@ export default function ProjectsSection() {
       description: "ML-powered app recommending optimal crops and fertilizers based on soil and environmental conditions.",
       techStack: ["Python", "scikit-learn", "Pandas", "Flask", "React.js"],
       githubUrl: "https://github.com/Amarnathss/Crop-and-Fertilizer-Recomendation-Project",
-      demoUrl: "#",
+      demoUrl: "https://orca-app-8jg99.ondigitalocean.app/",
     },
     {
       title: "PrepStack AI Assistant",
@@ -23,7 +23,7 @@ export default function ProjectsSection() {
       description: "Platform to upload and search personal notes, integrated GitHub access, and competitive programming stats visualization.",
       techStack: ["React.js", "Node.js", "Grok AI", "Multi-user"],
       githubUrl: "https://github.com/Amarnathss/PrepStack_AI_Assistent",
-      demoUrl: "#",
+      demoUrl: "https://whale-app-8rmyo.ondigitalocean.app/",
     },
     {
       title: "Jobsy – Job Portal",
@@ -31,7 +31,7 @@ export default function ProjectsSection() {
       description: "Full-stack job portal for job seekers and recruiters with job posting and candidate search functionality.",
       techStack: ["React.js", "Node.js", "Express", "MongoDB"],
       githubUrl: "https://github.com/Amarnathss/jobsy",
-      demoUrl: "#",
+      demoUrl: "https://jellyfish-app-e6tzz.ondigitalocean.app/",
     },
   ];
 
