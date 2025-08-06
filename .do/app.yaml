@@ -1,0 +1,36 @@
+name: amarnath-portfolio
+services:
+- name: web
+  source_dir: /
+  github:
+    repo: Amarnathss/Portfolio-website1
+    branch: main
+  run_command: npm start
+  environment_slug: node-js
+  instance_count: 1
+  instance_size_slug: basic-xxs
+  build_command: npm run build:netlify
+  http_port: 8080
+  routes:
+  - path: /
+  envs:
+  - key: NODE_ENV
+    value: production
+  - key: NODE_VERSION
+    value: "18"
+
+static_sites:
+- name: portfolio-static
+  source_dir: /
+  github:
+    repo: Amarnathss/Portfolio-website1
+    branch: main
+  build_command: npm run build:netlify
+  output_dir: dist/public
+  index_document: index.html
+  error_document: index.html
+  routes:
+  - path: /
+  envs:
+  - key: NODE_VERSION
+    value: "18"
