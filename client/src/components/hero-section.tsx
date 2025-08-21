@@ -15,7 +15,7 @@ export default function HeroSection() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="https://drive.google.com/file/d/1CpYHMxgnOuBN2yI5g56CzXUaWI0ZMVbH/view?usp=sharing"
+              href="https://drive.google.com/file/d/1TDeKEAKAxxpILsAs5Km61tPAc_De4WUe/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
               className="chalk-hover chalk-box px-6 py-3 chalk-text font-chalk-body text-lg font-semibold hover:bg-chalk hover:text-black transition-all duration-300"
